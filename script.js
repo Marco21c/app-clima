@@ -16,6 +16,13 @@ function fetchWeather(city){
     fetch(`${urlBase}?q=${city}&appid=${API_KEY}&lang=es`)
     .then(data => data.json())
     .then(data => showWeatherData(data))
+    .catch(error =>{
+        const divResponseData = document.getElementById('dataResponse')
+        divResponseData.innerHTML = ''
+        const mensaje = document.createElement('h3')
+        mensaje.textContent = 'No se encontro la ciudad'
+        divResponseData.appendChild(mensaje)
+     })
 }
 
 function showWeatherData(data){
